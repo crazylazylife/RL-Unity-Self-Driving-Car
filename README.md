@@ -12,7 +12,9 @@ The concept behind reinforcement learning is quite simple to understand. The who
 <img src="https://github.com/crazylazylife/RL-Unity-Self-Driving-Car/blob/master/pic2.png" alt="Environment" height="300px" width="400px">
 
 The environment was developed in Unity. Unity provides a flexible interface with a large set of assets and libraries that make the task easier. First we got hold of the [ML-Agents Toolkit](https://github.com/Unity-Technologies/ml-agents) of Unity. The github repository has one of the best documentation to get started with. We used **ML-Agents version 0.15**, however the current version id **release 1**.
+
 **Note: Please make sure to check the dependencies of the libraries and the tools. Various versions had various support requirement which are sometime confusing.**
+
 We used the Standard Unity Assets pack from its extensive Assets Store and built the terrain, the car. The human figure was imported from a separate asset. A little tinkering with the settings got us easily to interact with the environment. The next part was defining the script to control the **Reward Function.** The details are updated in the CarAgent.cs script. This is a part of all the scripts associated with the car asset. Without changing much of the controller function, we hopped straight into defining out function. The script is docuented enough to understand the functions and the rewards.
 
 ## Reward Function
@@ -26,6 +28,21 @@ A -0.04f reward at each step is to force the agent to take a step at each instan
 
 We first trained the agent using PPO available with the ML-Agents Toolkit. In the next part we defined an A2C model that trains the agent by interacting with the application using the [Gym](https://gym.openai.com/) environment. Gym from openAI is a great resource for people actively working in the field of Reinforcement Learning. Most of the results are detailed in our paper that is uploaded in the repository. Some interesting training scenarios are shown here:
 
-### Trained model in action:
-The agent is able to reach the destination
+#### Trained model in action:
+The agent is able to reach the destination. This was trained using the PPO algorithm
 
+<img src="https://github.com/crazylazylife/RL-Unity-Self-Driving-Car/blob/master/videos/trained_ppo.gif" alt="Trained model" height="300px" width="400px">
+
+#### Training with A2C:
+A scene from an episode during training with our A2C algorithm:
+
+<img src="https://github.com/crazylazylife/RL-Unity-Self-Driving-Car/blob/master/videos/a2c_sample_training_scene.gif" alt="Trained model" height="300px" width="400px">
+
+One of the drawbacks we faced during training was when the agent decided that falling off the platform  provided better rewards than exploring the terrain for the target. It converged to a local minima. We tried to adjust the reward function in various ways possible, bu the agent kept on learning this anamoly. Here is a scene from the training:
+
+<img src="https://github.com/crazylazylife/RL-Unity-Self-Driving-Car/blob/master/videos/falling_off_platform.gif" alt="Trained model" height="300px" width="400px">
+
+## Challenges
+- Due to unavailability of powerful resources we were constrained to work with only a CPU environment. Though this affected our final accuracy, it laid the base for further improvement and training.
+- We have tried a tweaked the reward function but still faced the problem of the car agent jumping off the platform even after several epochs of training.
+- Next up, adding a few more barriers within the terrain for the car to avoid. Also opting for a more powerful computer for better and faster training.
