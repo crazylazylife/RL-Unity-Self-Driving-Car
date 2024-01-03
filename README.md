@@ -1,4 +1,6 @@
 # RL-Unity-Self-Driving-Car
+Done in collaboration with Megha Roy.
+
 A Reinforcement Learning implementation to train an agent, a car to drive itself in an uneven terrain to reach the destination object, a man radomly spawned in the region. This repository contains some of the essential files and their description. Since uploading all the necessary files would be impossible, we have tried to provide as much context as possible.
 
 ## Reinforcement Learning
